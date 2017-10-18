@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="uashal5" pageWidth="612" pageHeight="935" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92fb5e1a-8d41-4122-9d47-1af18c9bb0b7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="748"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="datasekolah" uuid="26a02e90-54ac-4df3-8e3d-d5c42044c127">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<queryString>
+			<![CDATA[select namamadrasah, jalan, desa, kecamatan, kabupaten from datamadrasah]]>
+		</queryString>
+		<field name="namamadrasah" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="jalan" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="desa" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="kecamatan" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="kabupaten" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="datapeserta" uuid="bca2139d-5813-4fb5-8603-e7adbac8dc5d">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<parameter name="id_siswa" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[select a.namasiswa,a.nis,a.nisn,b.namakelas from datasiswa a inner join datakelas b on a.id_kelas = b.id where a.id =  $P{id_siswa}]]>
+		</queryString>
+		<field name="namasiswa" class="java.lang.String"/>
+		<field name="nis" class="java.lang.String"/>
+		<field name="nisn" class="java.lang.String"/>
+		<field name="namakelas" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="namapelajaran" uuid="a0f71f08-e356-48e4-9b03-d3c7d3e02535">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<parameter name="id_pelajaran" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[select namapelajaran from datapelajaran where id =  $P{id_pelajaran}]]>
+		</queryString>
+		<field name="namapelajaran" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="pengetahuan" uuid="d1703f1d-f914-4547-adcb-3a69a43d5e45">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="148"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="847"/>
+		<parameter name="id_kelas" class="java.lang.Integer"/>
+		<parameter name="id_pelajaran" class="java.lang.Integer"/>
+		<parameter name="id_siswa" class="java.lang.Integer"/>
+		<parameter name="semester" class="java.lang.String"/>
+		<parameter name="tahunajaran" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select deskripsi from aspekpengetahuan where id_kelas =  $P{id_kelas} and id_pelajaran =  $P{id_pelajaran} and id_siswa =  $P{id_siswa} and semester = $P{semester} and tahunajaran =  $P{tahunajaran}]]>
+		</queryString>
+		<field name="deskripsi" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="keterampilan" uuid="1c28b9f6-850d-401f-a88a-6fe0ef1d45b7">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="229"/>
+		<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="766"/>
+		<parameter name="id_kelas" class="java.lang.Integer"/>
+		<parameter name="id_pelajaran" class="java.lang.Integer"/>
+		<parameter name="id_siswa" class="java.lang.Integer"/>
+		<parameter name="semester" class="java.lang.String"/>
+		<parameter name="tahunajaran" class="java.lang.String"/>
+		<queryString language="SQL">
+			<![CDATA[select deskripsi from aspekketerampilan where id_kelas =  $P{id_kelas} and id_pelajaran =  $P{id_pelajaran} and id_siswa =  $P{id_siswa} and semester = $P{semester} and tahunajaran =  $P{tahunajaran}]]>
+		</queryString>
+		<field name="deskripsi" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="semester" class="java.lang.String"/>
+	<parameter name="tahunajaran" class="java.lang.String"/>
+	<parameter name="jurusan" class="java.lang.String"/>
+	<parameter name="golongankelas" class="java.lang.String"/>
+	<parameter name="id_siswa" class="java.lang.Integer"/>
+	<parameter name="id_kelas" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select a.id_pelajaran,a.kelompok,b.agamaandbudi from kelompokpelajaran a inner join datapelajaran b on a.id_pelajaran=b.id where a.jurusan =  $P{jurusan}  and a.jenjang =  $P{golongankelas}  and a.kelompok != 5 order by a.kelompok asc , b.agamaandbudi desc]]>
+	</queryString>
+	<field name="id_pelajaran" class="java.lang.Integer"/>
+	<field name="kelompok" class="java.lang.Integer"/>
+	<field name="agamaandbudi" class="java.lang.Integer"/>
+	<variable name="nomor" class="java.lang.Integer" resetType="Group" resetGroup="kelompokheader" incrementType="Report" calculation="DistinctCount">
+		<variableExpression><![CDATA[$V{REPORT_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="decreaser" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{agamaandbudi}]]></variableExpression>
+	</variable>
+	<group name="kelompokheader">
+		<groupExpression><![CDATA[$F{kelompok}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<printWhenExpression><![CDATA[$F{kelompok}<=2]]></printWhenExpression>
+				<textField>
+					<reportElement x="0" y="0" width="570" height="20" uuid="4d97ca9c-4e73-4c3e-9d2a-6ab5625be01e"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+						<paragraph leftIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{kelompok}.intValue() == 1 ? "1.   Pendidikan Agama & Budi Pekerti" : $F{kelompok}.intValue() == 2 ? "Kelompok B" : ""]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="kelompokheader2">
+		<groupHeader>
+			<band height="40">
+				<printWhenExpression><![CDATA[$F{kelompok} == 3]]></printWhenExpression>
+				<textField>
+					<reportElement x="0" y="0" width="570" height="20" uuid="0cb522d1-9adb-4d4d-9690-9a8c77e20246"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+						<paragraph leftIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Kelompok C (Permintaan)"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="20" width="570" height="20" uuid="e2305df2-077e-4693-b579-2ff3b6424632"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+						<paragraph leftIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["I. Permintaan (MIPA, IPS, Ilmu Bahasa, Keagamaan)"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="kelompokheader3">
+		<groupHeader>
+			<band height="20">
+				<printWhenExpression><![CDATA[$F{kelompok} == 4]]></printWhenExpression>
+				<textField>
+					<reportElement x="0" y="0" width="570" height="20" uuid="9271026a-ccdf-4aaf-9e64-afc5e6493970"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+						<paragraph leftIndent="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["II. Lintas Minat dan / atau Pendalaman Minat"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="400" height="40" uuid="5b62cbb8-9f32-490c-a147-d1ad4d26132b"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="datasekolah" uuid="1b6295b3-0b6b-48e0-9416-73d7419a9452">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="40" width="400">
+						<staticText>
+							<reportElement x="0" y="0" width="100" height="17" uuid="80309e19-0d56-4232-bbe9-41e6d749b629"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Nama Sekolah]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="130" y="0" width="10" height="17" uuid="767ccf94-4376-44ef-8c66-81e2812ee41e"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[:]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="140" y="0" width="240" height="17" uuid="1a18fb17-634b-4f42-8fdb-c1dee749713f"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{namamadrasah}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="17" width="100" height="17" uuid="d13d2087-2637-4eb0-ad52-65897176af07"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Alamat]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="130" y="17" width="10" height="17" uuid="bcf8f00c-c044-42d4-b87b-efaecf9e5f78"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[:]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="140" y="17" width="240" height="17" uuid="3be655f4-4abe-4d52-a48d-14058c0921a0"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{jalan}+", "+$F{desa}+", "+$F{kecamatan}+", "+$F{kabupaten}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="0" y="34" width="380" height="39" uuid="876d0a58-a8e8-453f-ba29-f73aab341b33"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="datapeserta" uuid="c3108df0-e14a-4952-93a6-b893d8030637">
+						<datasetParameter name="id_siswa">
+							<datasetParameterExpression><![CDATA[$P{id_siswa}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="39" width="380">
+						<staticText>
+							<reportElement x="0" y="0" width="130" height="17" uuid="28a7eac0-ad76-4596-8f44-7a671a7f70b0"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Nama Peserta Didik]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="130" y="0" width="10" height="17" uuid="f9d24c34-84e8-4bf2-be9a-5d8f6ff6c492"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[:]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="140" y="0" width="220" height="17" uuid="fc33eaa4-561b-423b-b19d-6c6c96406ef1"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{namasiswa}.toUpperCase()]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="17" width="130" height="17" uuid="eba723fd-795b-48b3-873b-dc8344a32aee"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[No. Induk / NISN]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="130" y="17" width="10" height="17" uuid="0ee6afec-1cc4-4f58-a247-3ca68b7d3a9f"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[:]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="140" y="17" width="40" height="17" uuid="bf4ed911-0247-47ef-b96e-cd2bb4df6866"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{nis}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="180" y="17" width="10" height="17" uuid="1740c4b9-ca02-4931-801f-349a38adc356"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[/]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="190" y="17" width="180" height="16" uuid="4dfb0565-353b-4f29-8c0f-e05959712fbc"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{nisn}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="500" y="17" width="10" height="17" uuid="dd180078-ad7f-40c8-9766-3252d966b34e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="34" width="80" height="18" uuid="04e48af1-7eec-4271-86c7-78db6bab182f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tahunajaran}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="35" width="100" height="17" uuid="9ff01223-5925-483a-bad7-a22f86d84b60"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tahun Pelajaran]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="400" y="0" width="170" height="17" uuid="1c57ee5b-af18-4f87-bf11-76fbc6c4c2d9"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="datapeserta" uuid="a9f29d7c-32c2-40f3-b3ec-c206cf146cf2">
+						<datasetParameter name="id_siswa">
+							<datasetParameterExpression><![CDATA[$P{id_siswa}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="17" width="170">
+						<textField>
+							<reportElement x="110" y="0" width="60" height="17" uuid="f3740ed1-0c71-4d70-895e-396d321f0820"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{namakelas}]]></textFieldExpression>
+						</textField>
+						<staticText>
+							<reportElement x="0" y="0" width="40" height="17" uuid="da4faeef-5dba-41a2-ba4f-2728cad70bd8"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Kelas]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="100" y="0" width="10" height="17" uuid="e943bdac-3ac1-4bb2-91d5-846d7786d526"/>
+							<textElement>
+								<font size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[:]]></text>
+						</staticText>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="500" y="35" width="10" height="17" uuid="12567cab-dc52-4933-b9d1-a7667c31ddb0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="17" width="60" height="17" uuid="3f219e0d-f620-443b-b892-483431ab5f3d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Semester]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="17" width="60" height="17" uuid="7b25b8c1-37c7-498e-a295-cab1669ace83"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{semester}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="73" width="580" height="1" uuid="ce99793e-84f4-4875-b008-0dc894385ea1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="280" height="22" uuid="bfc84b76-d361-4404-b176-265d5f1bc3d6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[B. Pengetahuan dan Keterampilan]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="180" height="20" uuid="ee3a7408-b298-4e7d-a954-6958aaf01140"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATA PELAJARAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="10" width="100" height="20" uuid="e8631331-3c40-4bd6-838f-9b341ec3b394"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KOMPETENSI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="10" width="290" height="20" uuid="845a327f-10a2-48b7-b74c-31f18e738cde">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATATAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="570" height="20" uuid="0999315d-f1ae-4ece-8f48-8e1022db3da7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Kelompok A]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="25" height="60" uuid="aca8755f-c23a-499b-a95f-148ddbcf8e22">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agamaandbudi}.intValue() != 1 && $F{kelompok}.intValue() == 1 ? $V{nomor}-$V{decreaser}+1 : $F{agamaandbudi}.intValue() != 1 && $F{kelompok}.intValue() > 1 ? $V{nomor} : ""]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="39" y="0" width="141" height="60" uuid="1a399dbd-0ec2-4f1e-ab02-aaf7c6f00309">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{agamaandbudi} == 1]]></printWhenExpression>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="namapelajaran" uuid="b22dd29a-1f1d-4beb-a180-b3954378a8c2">
+						<datasetParameter name="id_pelajaran">
+							<datasetParameterExpression><![CDATA[$F{id_pelajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="60" width="141">
+						<textField>
+							<reportElement x="0" y="0" width="141" height="60" uuid="d8798648-0c1d-46c3-8b2f-83988fe83b69"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font size="12" isBold="true"/>
+								<paragraph leftIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{namapelajaran}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<textField>
+				<reportElement x="25" y="0" width="14" height="60" uuid="ab66b663-93cd-4a18-afa1-0e060256101f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{agamaandbudi} == 1]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} == 1 && $F{agamaandbudi} == 1? "a." : $V{REPORT_COUNT} == 2 && $F{agamaandbudi} == 1 ? "b." : $V{REPORT_COUNT} == 3  && $F{agamaandbudi} == 1 ? "c." : $V{REPORT_COUNT} == 4 && $F{agamaandbudi} == 1 ? "d." : $V{REPORT_COUNT} == 5 && $F{agamaandbudi} == 1 ? "e." : $V{REPORT_COUNT} == 6 && $F{agamaandbudi} == 1 ? "f." : $V{REPORT_COUNT} == 7 && $F{agamaandbudi} == 1 ? "g." : $V{REPORT_COUNT} == 8  && $F{agamaandbudi} == 1? "h." : ""]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="25" y="0" width="155" height="60" uuid="d6d839b8-8d84-4747-8216-5c8ecc2ffa39">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<printWhenExpression><![CDATA[$F{agamaandbudi} != 1]]></printWhenExpression>
+				</reportElement>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="namapelajaran" uuid="8ab3bf09-d160-469f-99b7-3642b60316fc">
+						<datasetParameter name="id_pelajaran">
+							<datasetParameterExpression><![CDATA[$F{id_pelajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="60" width="155">
+						<textField>
+							<reportElement x="0" y="0" width="155" height="60" uuid="15130ef7-fb14-4247-8682-bceb06e67906"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font size="12" isBold="true"/>
+								<paragraph leftIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{namapelajaran}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<staticText>
+				<reportElement x="180" y="0" width="100" height="30" uuid="14a5cc48-cff1-4a5b-95d8-d20519bf85cb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Pengetahuan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="30" width="100" height="30" uuid="7b6419d5-0fae-4948-9ecd-fe06682f5b73">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Keterampilan]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="280" y="0" width="290" height="30" uuid="c7b88b4d-3656-407c-bbff-7ab93e31ba0e"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="pengetahuan" uuid="e61eaccf-c07f-4d60-8117-f075fe050e32">
+						<datasetParameter name="id_kelas">
+							<datasetParameterExpression><![CDATA[$P{id_kelas}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="id_pelajaran">
+							<datasetParameterExpression><![CDATA[$F{id_pelajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="id_siswa">
+							<datasetParameterExpression><![CDATA[$P{id_siswa}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="semester">
+							<datasetParameterExpression><![CDATA[$P{semester}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tahunajaran">
+							<datasetParameterExpression><![CDATA[$P{tahunajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="290">
+						<textField>
+							<reportElement x="0" y="0" width="290" height="30" uuid="4df53ae9-27d4-43f6-8b0e-03b829713eae"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement>
+								<font fontName="SansSerif" isBold="true"/>
+								<paragraph lineSpacing="Single" leftIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{deskripsi}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement x="280" y="30" width="290" height="30" uuid="f1d645d4-7ced-425f-81aa-2f165cab7fcb"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="keterampilan" uuid="4de8ae61-2cb4-44c4-be0d-ec8fd3fcb277">
+						<datasetParameter name="id_kelas">
+							<datasetParameterExpression><![CDATA[$P{id_kelas}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="id_pelajaran">
+							<datasetParameterExpression><![CDATA[$F{id_pelajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="id_siswa">
+							<datasetParameterExpression><![CDATA[$P{id_siswa}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="semester">
+							<datasetParameterExpression><![CDATA[$P{semester}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tahunajaran">
+							<datasetParameterExpression><![CDATA[$P{tahunajaran}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="290">
+						<textField>
+							<reportElement x="0" y="0" width="290" height="30" uuid="01fa6e26-e816-4329-9f21-a64a6281de2f"/>
+							<box>
+								<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+								<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textElement>
+								<font isBold="true"/>
+								<paragraph leftIndent="2"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{deskripsi}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

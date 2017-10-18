@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rapotuts" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Key" uuid="3ddbe184-bd19-4387-a79c-7af9579d74ec">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="namasiswa" uuid="36882fab-0a81-4ab3-a7c4-30c67e5818f4">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+		<parameter name="id_siswa" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[select namasiswa,nis,nisn from datasiswa where id =  $P{id_siswa}]]>
+		</queryString>
+		<field name="namasiswa" class="java.lang.String"/>
+		<field name="nis" class="java.lang.String"/>
+		<field name="nisn" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="id_siswa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[9]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select namasiswa,nis,nisn from datasiswa where id =  $P{id_siswa}]]>
+	</queryString>
+	<field name="namasiswa" class="java.lang.String"/>
+	<field name="nis" class="java.lang.String"/>
+	<field name="nisn" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="561" splitType="Stretch">
+			<image>
+				<reportElement x="222" y="160" width="115" height="112" uuid="e864d5fe-8670-421c-b9d0-7c666224ce10"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="169" y="0" width="224" height="39" uuid="78c905a9-266b-4126-8176-9989a12b5860"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAPOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="30" width="224" height="30" uuid="4d3ba91d-4f4a-478e-ba1c-149967f6e3bf"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MADRASAH ALIYAH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="53" width="224" height="30" uuid="09269785-d841-4b9b-bae5-d2107dfb2a94"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(MA)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="325" width="300" height="18" uuid="9828a967-9ba0-44ea-b7f2-7a324bea2aa0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Peserta Didik :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="351" width="300" height="39" uuid="b9b3a352-4e48-4339-80db-60ff46c637f1"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namasiswa}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="420" width="300" height="39" uuid="b8c92aa4-0f88-4d92-b36c-98834ba0bb3e">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nis}+" / "+$F{nisn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="130" y="400" width="300" height="20" uuid="137ea4f3-5737-48eb-b4a6-5926aeb0bdf5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIS/NISN :]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="190">
+			<staticText>
+				<reportElement x="0" y="120" width="570" height="18" uuid="b344f7d7-c863-4fe2-ae17-01aa3e8ba5d6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MADRASAH ALIYAH NEGERI YOGYAKARTA II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="102" width="570" height="18" uuid="5a450cee-f524-4946-9b62-a71eec4e2f86"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEMENTRIAN AGAMA DAERAH ISTIMEWA YOGYAKARTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="84" width="570" height="18" uuid="fa6202c5-b405-4cae-bcb8-62f482ef413e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KEMENTRIAN AGAMA REPUBLIK INDONESIA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

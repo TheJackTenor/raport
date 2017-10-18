@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravelcollective/html": "^5.3",
+        "cossou/jasperphp": "^2.1"
+    }
+}

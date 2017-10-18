@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-02-27T20:23:31 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="uashal2" pageWidth="612" pageHeight="935" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1c5efac1-3f80-4b68-be00-d244b8c8dc8e">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="metana"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from datamadrasah]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="namainstansi" class="java.lang.String"/>
+	<field name="namamadrasah" class="java.lang.String"/>
+	<field name="nimnsm" class="java.lang.String"/>
+	<field name="jalan" class="java.lang.String"/>
+	<field name="desa" class="java.lang.String"/>
+	<field name="kecamatan" class="java.lang.String"/>
+	<field name="kodepos" class="java.lang.String"/>
+	<field name="telepon" class="java.lang.String"/>
+	<field name="kabupaten" class="java.lang.String"/>
+	<field name="provinsi" class="java.lang.String"/>
+	<field name="website" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="id_guru" class="java.lang.Integer"/>
+	<field name="logo" class="java.lang.Object"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="214" splitType="Stretch">
+			<image>
+				<reportElement x="224" y="20" width="115" height="112" uuid="a2ec651b-f584-437c-9454-9f52b564575c"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="160" width="100" height="30" uuid="4319f893-c258-4c5b-aa9d-75199614f313"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAPOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="184" width="170" height="30" uuid="330236d9-d6d9-4692-af8e-717b9cd0e7b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MADRASAH ALIYAH]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="408" splitType="Stretch">
+			<textField>
+				<reportElement x="233" y="19" width="190" height="18" uuid="0741eb9e-be53-4951-951a-c1f56992e682"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namamadrasah}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="20" width="130" height="16" uuid="6f08404e-00d3-4d4b-b528-012a43c7025e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Nama Madrasah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="20" width="20" height="16" uuid="eb0ff939-c12b-4f97-9ec1-c489b44e803e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="56" width="130" height="16" uuid="64719c3d-8bf1-4b9d-ba5c-00ac86d98776"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NPSN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="56" width="20" height="16" uuid="4f5e4473-fe5f-4c99-ad27-1a428b4eff4f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="91" width="130" height="16" uuid="e39f8d5d-1f25-41ee-b853-28aa8ba3a2ea"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NIS/NSS/NDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="91" width="20" height="16" uuid="7ba07d3b-c4a3-464b-9a44-f23fd23d3305">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="91" width="190" height="16" uuid="c7b11867-2fff-48b0-a06f-47b9ccdbce79"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nimnsm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="126" width="130" height="16" uuid="46b74277-306b-45a9-b1af-73a8403154d2">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Alamat Madrasah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="126" width="20" height="16" uuid="344c448b-dceb-4320-80ec-05b16a7bd5b2">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="126" width="100" height="18" uuid="c7babdcd-4e82-455d-ad13-24118a58894d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jalan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="233" y="161" width="60" height="16" uuid="8c42e750-53d3-49f0-965b-ea179d7ee83c">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Kode Pos :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="297" y="161" width="100" height="18" uuid="2967bc51-68b3-4bf4-9dab-e5cb1407de7b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodepos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="233" y="177" width="34" height="16" uuid="6b945ea0-ddef-4397-993c-c2aae69e4043"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Telp.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="267" y="177" width="100" height="20" uuid="2a04db9c-3dfa-4b6a-ace5-c497aeb4bb95">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telepon}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="212" width="130" height="16" uuid="99429238-8512-4506-84f6-ac60110f94bb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Desa / Kelurahan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="212" width="20" height="16" uuid="7740d9e5-2cbc-496e-805d-e3c579130df0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="212" width="154" height="18" uuid="08e9d856-79e8-46aa-a5f4-a25b0fe48a5e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="247" width="130" height="16" uuid="c9266183-52da-47cb-9904-6b759687fe1c">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Kecamatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="247" width="20" height="16" uuid="e0dc9c1b-b4b3-4faa-acab-aa049e257ad9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="247" width="154" height="18" uuid="594ec72c-9a72-4819-a846-fc9ac7236727"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kecamatan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="282" width="130" height="16" uuid="023163af-dbb7-4cdc-897c-704b011167e8">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Kota / Kabupaten]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="282" width="154" height="23" uuid="3ec5b08d-ed0b-4a06-8b06-dd28948dc96a"/>
+				<textElement verticalAlignment="Top">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kabupaten}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="282" width="20" height="16" uuid="5ffe7b8f-8a91-4f24-bad2-59da3651a4c1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="318" width="130" height="16" uuid="dd74ae79-7fd9-4991-b336-5138a1deaa37">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Provinsi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="318" width="20" height="16" uuid="f5bd24b5-da4a-4816-b35c-27fd4b9fb366"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="317" width="226" height="18" uuid="a457c9e4-828f-4b3f-a9e9-e582eb09b4df">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provinsi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="353" width="130" height="16" uuid="99d2a5ce-4951-4cfa-8040-c1646a6fca30">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Website]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="353" width="20" height="16" uuid="f1428afa-40ae-405c-8230-9afa7cfbb9d5">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="352" width="246" height="18" uuid="740f8103-8710-4f45-b9a2-8d8a99d25d31"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{website}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="50" y="388" width="130" height="16" uuid="141c442b-0c0c-4444-a3e2-89387d8f305a">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[E-Mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="388" width="20" height="16" uuid="4a966145-b7d9-43e2-a53c-127012a3b2e2">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="233" y="388" width="245" height="20" uuid="a880eaa5-dfea-4bff-82e8-13b4ce833b71"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
