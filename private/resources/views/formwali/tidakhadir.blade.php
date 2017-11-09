@@ -89,39 +89,37 @@
                       <td class="warning"><p style="width: 200px;margin-top: 18px">{{$siswa->namasiswa}}</p></td>
                       <td class="warning"><p style="width: 50px">{{$siswa->nis}} / {{$siswa->nisn}}</p></td>
 
-                      @if(!Session::has('error'))
-
                       @foreach($content as $konten)
                         @if($konten->id_siswa == $siswa->id)
                           @php
                             $toggle = 1;
                           @endphp
-                          <td><input type="text" id="sakit{{$no}}" class="form-control" @if($konten->sakit != " ") value="{{$konten->sakit}}" @endif name="sakit{{$no}}" style="width: 45px;margin-top: 10px"></td>
-                          <td><input type="text" id="ijin{{$no}}" class="form-control" @if($konten->ijin != " ") value="{{$konten->ijin}}" @endif name="ijin{{$no}}" style="width: 45px;margin-top: 10px"></td>
-                          <td><input type="text" id="alpha{{$no}}" class="form-control" @if($konten->alpha != " ") value="{{$konten->alpha}}" @endif name="alpha{{$no}}" style="width: 45px;margin-top: 10px"></td>
+                          <td><input type="text" id="sakit{{$no}}" class="form-control" value="{{$konten->sakit}}" name="sakit{{$no}}" style="width: 45px;margin-top: 10px"></td>
+                          <td><input type="text" id="ijin{{$no}}" class="form-control" value="{{$konten->ijin}}" name="ijin{{$no}}" style="width: 45px;margin-top: 10px"></td>
+                          <td><input type="text" id="alpha{{$no}}" class="form-control" value="{{$konten->alpha}}" name="alpha{{$no}}" style="width: 45px;margin-top: 10px"></td>
 
-                          <td><input type="text" class="form-control" @if($konten->eskul1 != " ") value="{{$konten->eskul1}}" @endif name="eskul1{{$no}}" style="width: 100px;margin-top: 10px"></td>
-                          <td><input type="text" id="nilai1{{$no}}" class="form-control" @if($konten->nilaieskul1 != " ") value="{{$konten->nilaieskul1}}" @endif name="nilai1{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keterangan1{{$no}}" style="width: 200px">@if($konten->keteranganeskul1 != " "){{$konten->keteranganeskul1}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->eskul1}}" name="eskul1{{$no}}" style="width: 100px;margin-top: 10px"></td>
+                          <td><input type="text" id="nilai1{{$no}}" class="form-control" value="{{$konten->nilaieskul1}}" name="nilai1{{$no}}" style="width: 37px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keterangan1{{$no}}" style="width: 200px">{{$konten->keteranganeskul1}}</textarea> </td>
 
-                          <td><input type="text" class="form-control" @if($konten->eskul2 != " ") value="{{$konten->eskul2}}" @endif name="eskul2{{$no}}" style="width: 100px;margin-top: 10px"></td>
-                          <td><input type="text" id="nilai2{{$no}}" class="form-control" @if($konten->nilaieskul2 != " ") value="{{$konten->nilaieskul2}}" @endif name="nilai2{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keterangan2{{$no}}" style="width: 200px">@if($konten->keteranganeskul2 != " "){{$konten->keteranganeskul2}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->eskul2}}" name="eskul2{{$no}}" style="width: 100px;margin-top: 10px"></td>
+                          <td><input type="text" id="nilai2{{$no}}" class="form-control" value="{{$konten->nilaieskul2}}" name="nilai2{{$no}}" style="width: 37px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keterangan2{{$no}}" style="width: 200px">{{$konten->keteranganeskul2}}</textarea> </td>
 
-                          <td><input type="text" class="form-control" @if($konten->eskul3 != " ") value="{{$konten->eskul3}}" @endif name="eskul3{{$no}}" style="width: 100px;margin-top: 10px"></td>
-                          <td><input type="text" id="nilai3{{$no}}" class="form-control" @if($konten->nilaieskul3 != " ") value="{{$konten->nilaieskul3}}" @endif name="nilai3{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keterangan3{{$no}}" style="width: 200px">@if($konten->keteranganeskul3 != " "){{$konten->keteranganeskul3}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->eskul3}}" name="eskul3{{$no}}" style="width: 100px;margin-top: 10px"></td>
+                          <td><input type="text" id="nilai3{{$no}}" class="form-control" value="{{$konten->nilaieskul3}}" name="nilai3{{$no}}" style="width: 37px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keterangan3{{$no}}" style="width: 200px">{{$konten->keteranganeskul3}}</textarea> </td>
 
-                          <td><input type="text" class="form-control" @if($konten->prestasi1 != " ") value="{{$konten->prestasi1}}" @endif name="prestasi1{{$no}}" style="width: 200px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keteranganpres1{{$no}}" style="width: 200px">@if($konten->keteranganprestasi1 != " "){{$konten->keteranganprestasi1}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->prestasi1}}" name="prestasi1{{$no}}" style="width: 200px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keteranganpres1{{$no}}" style="width: 200px">{{$konten->keteranganprestasi1}}</textarea> </td>
 
-                          <td><input type="text" class="form-control" @if($konten->prestasi2 != " ") value="{{$konten->prestasi2}}" @endif  name="prestasi2{{$no}}" style="width: 200px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keteranganpres2{{$no}}" style="width: 200px">@if($konten->keteranganprestasi2 != " "){{$konten->keteranganprestasi2}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->prestasi2}}" name="prestasi2{{$no}}" style="width: 200px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keteranganpres2{{$no}}" style="width: 200px">{{$konten->keteranganprestasi2}}</textarea> </td>
 
-                          <td><input type="text" class="form-control"  @if($konten->prestasi3 != " ") value="{{$konten->prestasi3}}" @endif name="prestasi3{{$no}}" style="width: 200px;margin-top: 10px"></td>
-                          <td><textarea class="form-control" name="keteranganpres3{{$no}}" style="width: 200px"> @if($konten->keteranganprestasi3 != " "){{$konten->keteranganprestasi3}}@endif</textarea> </td>
+                          <td><input type="text" class="form-control" value="{{$konten->prestasi3}}" name="prestasi3{{$no}}" style="width: 200px;margin-top: 10px"></td>
+                          <td><textarea class="form-control" name="keteranganpres3{{$no}}" style="width: 200px">{{$konten->keteranganprestasi3}}</textarea> </td>
 
-                          <td><textarea class="form-control" name="catatan{{$no}}" style="width: 200px">@if($konten->catatan != " "){{$konten->catatan}}@endif</textarea> </td>
+                          <td><textarea class="form-control" name="catatan{{$no}}" style="width: 200px">{{$konten->catatan}}</textarea> </td>
                       </tr>
                       @endif
                       @endforeach
@@ -155,40 +153,6 @@
                         <td><textarea class="form-control" name="catatan{{$no}}" style="width: 200px"></textarea> </td>
                       </tr>
                       @endif
-
-                      @else
-
-                       <td><input type="text" id="sakit{{$no}}" class="form-control" name="sakit{{$no}}" value="{{Input::old('sakit'.$no)}}" style="width: 45px;margin-top: 10px"></td>
-                        <td><input type="text" id="ijin{{$no}}" class="form-control" name="ijin{{$no}}" value="{{Input::old('ijin'.$no)}}" style="width: 45px;margin-top: 10px"></td>
-                        <td><input type="text" id="alpha{{$no}}" class="form-control" name="alpha{{$no}}" value="{{Input::old('alpha'.$no)}}" style="width: 45px;margin-top: 10px"></td>
-
-                        <td><input type="text" class="form-control" name="eskul1{{$no}}" value="{{Input::old('eskul1'.$no)}}" style="width: 100px;margin-top: 10px"></td>
-                        <td><input type="text" id="nilai1{{$no}}" class="form-control" value="{{Input::old('nilai1'.$no)}}" name="nilai1{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keterangan1{{$no}}" style="width: 200px">{{Input::old('keterangan1'.$no)}}</textarea> </td>
-
-                        <td><input type="text" class="form-control" name="eskul2{{$no}}" value="{{Input::old('eskul2'.$no)}}" style="width: 100px;margin-top: 10px"></td>
-                        <td><input type="text" id="nilai2{{$no}}" class="form-control" value="{{Input::old('nilai2'.$no)}}" name="nilai2{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keterangan2{{$no}}" style="width: 200px">{{Input::old('keterangan2'.$no)}}</textarea> </td>
-
-                        <td><input type="text" class="form-control" name="eskul3{{$no}}" value="{{Input::old('eskul3'.$no)}}" style="width: 100px;margin-top: 10px"></td>
-                        <td><input type="text" id="nilai3{{$no}}" class="form-control" value="{{Input::old('nilai3'.$no)}}" name="nilai3{{$no}}" style="width: 37px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keterangan3{{$no}}" style="width: 200px">{{Input::old('keterangan3'.$no)}}</textarea> </td>
-
-                        <td><input type="text" class="form-control" name="prestasi1{{$no}}" value="{{Input::old('prestasi1'.$no)}}" style="width: 200px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keteranganpres1{{$no}}" style="width: 200px">{{Input::old('keteranganpres1'.$no)}}</textarea> </td>
-
-                        <td><input type="text" class="form-control" name="prestasi2{{$no}}" value="{{Input::old('prestasi2'.$no)}}" style="width: 200px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keteranganpres2{{$no}}" style="width: 200px">{{Input::old('keteranganpres2'.$no)}}</textarea> </td>
-
-                        <td><input type="text" class="form-control" name="prestasi3{{$no}}" value="{{Input::old('prestasi3'.$no)}}" style="width: 200px;margin-top: 10px"></td>
-                        <td><textarea class="form-control" name="keteranganpres3{{$no}}" style="width: 200px">{{Input::old('keteranganpres3'.$no)}}</textarea> </td>
-
-                        <td><textarea class="form-control" name="catatan{{$no}}" style="width: 200px">{{Input::old('catatan'.$no)}}</textarea> </td>
-                      </tr>
-
-                      @endif
-
-
                   @endforeach                
                 </thead>              
               </table>       

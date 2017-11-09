@@ -185,12 +185,13 @@ class TidakHadirController extends Controller
                 }
 
             });
-            File::delete($fileLocation);
+            File::delete($fileLocation);           
             return Redirect::back()->with(session()->flash('message','Proses impor daftar hadir & ekskul telah berhasil !'));
         }else{
+            File::delete($fileLocation);
             return Redirect::back()->with(session()->flash('error','Pilih layout excel yang benar'));
         }
-
+        
         
 
     }
