@@ -236,6 +236,9 @@ Route::post('clean','SiswaController@clean');
 Route::post('wali/manajemensiswa/okconfirmation','SiswaController@okconfirmation');
 Route::get('wali/manajemensiswa/datasiswa/edit/{id}','SiswaController@editwali');
 Route::post('wali/manajemensiswa/datasiswa/proseseditsiswa','SiswaController@editeksekutorwali');
+
+Route::get('layout/tidakhadir','TidakHadirController@unduhLayout');
+Route::post('identitas/daftarhadir&eksul/import','TidakHadirController@uploadExcel');
 /*===================================================================================================*/
 
 Route::post('buat','trycontroller@make');

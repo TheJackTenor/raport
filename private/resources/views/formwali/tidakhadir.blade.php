@@ -16,9 +16,9 @@
             <div class="box-header with-border">
               <h3 class="box-title"><small>Kelas : </small>{{Session::get('charkelas')}} | <small>Semester : </small>{{Session::get('semester')}} | <small>Tahun ajaran : </small>{{Session::get('tahunajaran')}}</h3>
              
-              <div class="box-tools pull-right">             
-            <button id="daftarkelas" type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>          
+              <div class="box-tools pull-right">
+              <button type="button" class="btn btn-warning btn-flat btn-xs" data-toggle="modal" data-target="#uploadExcelDataRapot" id="openModal">Upload Excel</button>            
+              <a href="{{URL('layout/tidakhadir')}}"><button type="button" class="btn btn-success btn-flat btn-xs">Unduh Excel Layout Nilai</button></a>         
           </div>
    
             </div>
@@ -202,10 +202,89 @@
           </div>
         </div>
       </div>
-
-  <p id="joss"></p>
-
 	</section>
 </div>
+
+<!--========================================= MODAL UNTUK UPLOAD EXCEL DATA RAPOT ==============================================-->
+ <div class="example-modal" >
+        <div class="modal fade modal modal-default" id="uploadExcelDataRapot" role="dialog" aria-labelledby="exampleModalLabel">
+          <div class="modal-dialog" >
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Upload Excel</h4>
+              </div>
+              <div class="modal-body">
+
+              <div style="display: none" id="loading">
+                <h3 style="text-align: center;">Sedang memuat. Silahkan tunggu</h3><h3 id="wait" style="text-align: center;"></h3>
+              </div>
+                 {{Form::open(array('role'=>'form','url'=>'identitas/daftarhadir&eksul/import','enctype'=>'multipart/form-data'))}}             
+                  <div class="form-group {{$errors->has('file') ? 'has-error' : Session::has('error') ? 'has-error' : ''}}">  
+                  {{Form::label('file','Unggah File Excel',['id' => 'filelabel'])}}
+                                             
+                  <input type="file" id="file" name="file" class="validate"/ >
+                  <p class="help-block" id="keterangan">Ekstensi file yang diizinan : xlsm dan xls</p>
+
+                  @if($errors->has('file'))
+                  <span class="help-block">
+                    <strong id="pesanerror">{{$errors->first('file')}}</strong>
+                  </span>
+                  @endif
+
+                  @if(Session::has('error'))
+                    <span class="help-block">
+                      <strong id="pesanerror">{{Session::get('error')}}. Silahkan tekan tombol 'Unduh Excel Layout Nilai' atau klik <a href="{{URL('layout/tidakhadir')}}">DISINI</a> untuk mendownload layout excel yang benar.</strong>
+                    </span>
+                  @endif
+                </div>  
+
+                  <div class="modal-footer">
+                <button type="submit" class="btn btn-flat btn-success" onclick="yo();">Upload</button>
+                <button type="button" class="btn btn-danger pull-left btn-flat" data-dismiss="modal">Tutup</button>
+              {{Form::close()}}
+              </div>
+                
+              </div>
+              
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+      </div>
+<!--========================================= MODAL UNTUK UPLOAD EXCEL DATA RAPOT ==============================================-->
+
+<script type="text/javascript">
+function yo(){
+
+    $('#loading').show();
+
+    $('#filelabel').hide();
+    $('#file').hide();
+    $('#keterangan').hide();
+    $('#pesanerror').hide();
+
+    var dots = window.setInterval( function() {
+    var wait = document.getElementById("wait");
+    if ( wait.innerHTML.length > 5 ) 
+        wait.innerHTML = ".";
+    else 
+        wait.innerHTML += ".";
+    }, 300);
+
+}
+</script>
+
+@if($errors->has('file') or Session::has('error'))
+<script type="text/javascript">
+  window.setTimeout(function(){
+    document.getElementById("openModal").click();
+  }, 0);
+</script>
+
+@endif
 
 @endsection
