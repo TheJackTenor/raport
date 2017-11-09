@@ -18,7 +18,7 @@ class AnalisisKenaikanController extends Controller
     public function analisis(){
     	DB::table('analisiskenaikankelas')->where('id_kelas','=',session()->get('kelas'))->delete();
 
-    	$option = DB::table('pengaturan')->select('analisis','jumlah')->where('id','=',1)->first();
+    	$option = DB::table('pengaturan')->select('analisis','jumlah')->first();
 
     	$siswa = DB::table('datasiswa')->select('id')->where('id_kelas','=',session()->get('kelas'))->orderBy('nis','asc')->get();
 
@@ -303,17 +303,8 @@ return Redirect::to('hasil/cetakraportuas/hasilanalisis');
 
 public function show(){
 	$data = AnalisisKenaikanKelas::where('id_kelas','=',session()->get('kelas'))->get();
-
 	return View::make('formwali/analisiskenaikankelas')->with('data',$data);
 }
-
-public function mama(){
-  
-    $pengetahuan = AspekPengetahuan::where('id_kelas','=',session()->get('kelas'))->where('id_siswa','=',10)->where('id_pelajaran','=',35)->sum('nilaipengetahuan');
-
-    echo "$pengetahuan";
-}
-
 
 }
 

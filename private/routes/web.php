@@ -37,6 +37,7 @@ Route::get('layout/nilai','AspekPengetahuanController@unduhLayoutNilai');
 Route::get('layout/nilaibk','AspekSikapSosialControllerBk@downloadLayoutNilaiBk');
 
 Route::post('caripelajaran', 'HomeController@cariPelajaranBk');
+Route::post('caripelajaranasguru', 'HomeController@cariPelajaranGuru');
 
 Route::group(['middleware'=>['authmiddleware']], function(){
 /* ---------------ADMIN MAKER HANDLER-----------------*/

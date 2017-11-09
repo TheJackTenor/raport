@@ -350,7 +350,7 @@ desired effect
                               
                   <button type="button" class="btn btn-app btn-flat" data-target="#pilihankelas" data-toggle="modal" data-dismiss="modal" style="width: 174px;height: 150px"><i class="fa fa-university" ></i><p style="font-weight: 600;font-size: 25px">Wali Kelas</p></button>
 
-                  <button type="button" class="btn btn-app btn-flat" style="width: 174px;height: 150px" data-toggle="modal" data-target="#kelasdanpelajaran" data-dismiss="modal"><i class="fa fa-user" ></i><p style="font-weight: 600;font-size: 25px">Guru</p></button>
+                  <button type="button" class="btn btn-app btn-flat" style="width: 174px;height: 150px" data-toggle="modal" data-target="#kelasdanpelajaran" data-dismiss="modal" onclick="pilihKelasDanPelajaran();"><i class="fa fa-user" ></i><p style="font-weight: 600;font-size: 25px">Guru</p></button>
 
                   <button type="button" class="btn btn-app btn-flat" style="width: 174px;height: 150px" data-toggle="modal" data-target="#modalBk" data-dismiss="modal" onclick="kelasTrigger();"><i class="fa fa-user-md" ></i><p style="font-weight: 600;font-size: 25px">BK</p></button>
 
@@ -417,25 +417,27 @@ desired effect
                 <h4 class="modal-title">Pilih Kelas dan Pelajaran</h4>
               </div>
               <div class="modal-body">
-                {{Form::open(array('role'=>'form','url'=>'admin/setguru','enctype'=>'multipart/form-data'))}}
-                   <div class="form-group">                  
-                    {{Form::label('pilihpelajaran','Pilih Pelajaran',['class'=>'control-label'])}}                   
-                     <select name="pilihpelajaran" id="menupelajaran" class="form-control select2" style="width: 100%">
-
-                     @foreach(session()->get('daftarpelajaran') as $step1)
-                             <option value="{{$step1->id}}">{{$step1->namapelajaran}}</option>
-                     @endforeach
-                  </select>  
-                </div>
-
-                <div class="form-group">                  
+                  <div class="form-group">                  
                     {{Form::label('pilihkelas','Pilih Kelas',['class'=>'control-label'])}}                   
-                     <select name="pilihkelas" id="menukelas" class="form-control select2" style="width: 100%">
+                     <select name="menukelas" id="menukelas" class="form-control select2" style="width: 100%" onchange="pilihKelasDanPelajaran();">
                      @foreach(Session::get('daftarkelas') as $step1)
                              <option value="{{$step1->id}}">{{$step1->namakelas}}</option>
                      @endforeach
                   </select>  
                 </div>
+
+
+                   <div class="form-group">                  
+                    {{Form::label('pilihpelajaran','Pilih Pelajaran',['class'=>'control-label'])}}                   
+                     <select name="menupelajaran" id="menupelajaran" class="form-control select2" style="width: 100%">
+
+<!--                      @foreach(session()->get('daftarpelajaran') as $step1)
+                             <option value="{{$step1->id}}">{{$step1->namapelajaran}}</option>
+                     @endforeach -->
+                  </select>  
+                </div>
+
+                
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default pull-left btn-flat" data-toggle="modal" data-target="#loginsebagai" data-dismiss="modal">Kembali</button>
@@ -1292,6 +1294,49 @@ $(".js-example-placeholder-single").select2({
         }); 
 
 }
+</script>
+
+<script type="text/javascript">
+  function pilihKelasDanPelajaran(){
+    $('select[id="menupelajaran"]').attr("disabled", true);
+
+     $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+});
+    
+      var kelasTerpilih = $('#menukelas option:selected').val(); 
+
+      var dataString = "kelasTerpilih="+kelasTerpilih;
+      var alamat = "{{URL('caripelajaranasguru')}}";
+
+        $.ajax({
+            type: 'POST',
+            url: alamat,
+            data:  dataString,
+            success: function(data){
+              var options, index, select, option;
+        $('select[id="menupelajaran"]').attr("disabled", false);
+        // Get the raw DOM object for the select box
+        select = document.getElementById('menupelajaran');
+
+        
+        // Clear the old options
+        select.options.length = 0;
+        
+        // Load the new options
+        options = data.options;
+        for (index = 0; index < options.length; ++index) {
+          option = options[index];
+          select.options.add(new Option(option.text, option.value));
+        }
+            }
+            
+        }); 
+
+}
+
 </script>
 
 <script type="text/javascript">

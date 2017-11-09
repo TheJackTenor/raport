@@ -328,13 +328,6 @@ class HomeController extends Controller
 
     }
 
-    public function setguru(){
-        session()->set('id_guru',Input::get('daftarguru'));
-        session()->set('kelas',Input::get('pilihkelas'));
-        session()->set('pelajaran',Input::get('pilihpelajaran'));
-        return Redirect::to('admin/guru/home');
-    }
-
     public function findproperguru(Request $request){
         session()->flash('id_pelajaran',$request->daftarpelajaran);
         session()->flash('id_kelas',$request->daftarkelas);
@@ -366,6 +359,25 @@ class HomeController extends Controller
 
         return Response()->json(array("options"=>$value));
     }
+
+
+//============================== FUNCTION UNTUK CARI PELAJARAN GURU SESUAI KELAS =================================
+
+    public function cariPelajaranGuru(Request $request){
+        $getIdentitasKelas = DB::table('datakelas')->select('golongankelas','jurusankelas')->where('id','=',$request->kelasTerpilih)->first();
+
+        $getDaftarKelas = DB::table('kelompokpelajaran')->join('datapelajaran', function($join) use($getIdentitasKelas){
+            $join->on('kelompokpelajaran.id_pelajaran','=','datapelajaran.id')->where('kelompokpelajaran.jenjang','=',$getIdentitasKelas->golongankelas)->where('kelompokpelajaran.jurusan','=',$getIdentitasKelas->jurusankelas)->where('kelompokpelajaran.kelompok','<>',5);
+        })->select('datapelajaran.id','datapelajaran.namapelajaran')->get();
+
+        foreach ($getDaftarKelas as $key) {
+            $value[] = array("value"=>$key->id, "text"=>$key->namapelajaran);
+        }
+
+        return Response()->json(array("options"=>$value));
+    }
+
+//============================== FUNCTION UNTUK CARI PELAJARAN GURU SESUAI KELAS =================================
 
     public function homelanderbk(){
         $dataKelas = DB::table('datakelas')->select('namakelas','jurusankelas','golongankelas')->where('id','=',Input::get('pilihKelas'))->first();
