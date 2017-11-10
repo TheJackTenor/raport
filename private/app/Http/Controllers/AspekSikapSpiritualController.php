@@ -74,6 +74,19 @@ class AspekSikapSpiritualController extends Controller
 
                 DB::table('detailnilai')->insert($data2);
             }
+
+            $checkNilaiBk = DB::table('nilai')->where('id_kelas','=',session()->get('kelas'))->where('id_pelajaran','=',session()->get('pelajaran'))->where('id_siswa','=',Input::get('idsiswa'.$i))->where('semester','=',session()->get('semester'))->where('tahunajaran','=',session()->get('tahunajaran'))->where('kd_aspek','=',3)->whereNotNull('id_karyawan')->count();
+
+            if ($checkNilaiBk != 0) {
+                $getBkIdNilai = DB::table('nilai')->select('id')->where('id_kelas','=',session()->get('kelas'))->where('id_pelajaran','=',session()->get('pelajaran'))->where('id_siswa','=',Input::get('idsiswa'.$i))->where('semester','=',session()->get('semester'))->where('tahunajaran','=',session()->get('tahunajaran'))->where('kd_aspek','=',3)->whereNotNull('id_karyawan')->first();
+
+                $data = array(
+                    'nilai' => Input::get('rerataGab'.$i),
+                    'predikat' => Input::get('predikatGab'.$i)
+                    );
+
+                DB::table('nilai')->where('id','=',$getBkIdNilai->id)->update($data);
+            }
       
             
         }

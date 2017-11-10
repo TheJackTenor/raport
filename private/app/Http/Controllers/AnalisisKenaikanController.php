@@ -37,37 +37,41 @@ class AnalisisKenaikanController extends Controller
     			$status = 0;
     			$incre = 0;
 
-    			$countagama = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->count();
+    			$countagama = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->count();
+
 
     			if ($countagama != 0) {
 
     				$status = 1;
 
 
-    				$predikat = DB::table('nilai')->select('predikat')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
+    				$predikat = DB::table('nilai')->select('predikat')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->first();
 
 
     				$query = "Aspek Spiritual = ".$predikat->predikat;
     			}
 
-    			$countsosial = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->count();
+    			$countsosial = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->count();
 
     			if ($countsosial != 0) {
 
     				$status = 1;
 
-    				$predikat = DB::table('nilai')->select('predikat')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
+    				$predikat = DB::table('nilai')->select('predikat')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->first();
 
     				$query.= " | Aspek Sosial = ".$predikat->predikat;
     			}
 
     			foreach ($daftarpelajaran as $daftar) {
+                    $memoriPelajaran = false;
+
     				$ckm = DB::table('datadasarnilai')->select('ckmpengetahuan','ckmketerampilan')->where('jurusan','=',session()->get('jurusankelas'))->where('gol_kelas','=',session()->get('golongankelas'))->where('id_pelajaran','=',$daftar->id_pelajaran)->first();
 
     				$pengetahuan = DB::table('nilai')->select('nilai')->where('id_siswa','=',$siswas->id)->where('kd_aspek','=',1)->where('id_pelajaran','=',$daftar->id_pelajaran)->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
 
     				if ($pengetahuan->nilai < $ckm->ckmpengetahuan) {
     					$incre++;
+                        $memoriPelajaran = true;
     					if (!$pengetahuan) {
     						if ($status == 1) {
     							$querys .=" | ".$daftar->datapelajaran->namapelajaran."(PENGETAHUAN) = 0 (".$ckm->ckmpengetahuan.")";
@@ -92,7 +96,9 @@ class AnalisisKenaikanController extends Controller
     				$keterampilan = DB::table('nilai')->select('nilai')->where('id_siswa','=',$siswas->id)->where('kd_aspek','=',2)->where('id_pelajaran','=',$daftar->id_pelajaran)->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
 
     				if ($keterampilan->nilai < $ckm->ckmketerampilan) {
-    					$incre++;
+                        if ($memoriPelajaran == false) {
+                            $incre++;
+                        }   					
     					if (!$keterampilan) {
     						if ($status == 1) {
     							$querys .=" | ".$daftar->datapelajaran->namapelajaran."(KETERAMPILAN) = 0 (".$ckm->ckmketerampilan.")";
@@ -168,25 +174,25 @@ class AnalisisKenaikanController extends Controller
     			$incre = 0;
 
     
-                $countagama = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->count();
+                $countagama = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->count();
 
     			if ($countagama != 0) {
 
     				$status = 1;
 
-                   $predikat = DB::table('nilai')->select('predikat','semester')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
+                   $predikat = DB::table('nilai')->select('predikat','semester')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',3)->where('id_pelajaran','=',$agama->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->first();
 
                         $query.= "Aspek Spiritual = ".$predikat->predikat." (".$predikat->semester.") ";
                 
     			}
 
-    			$countsosial = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$agama->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->count();
+    			$countsosial = DB::table('nilai')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('predikat','<>','B')->where('predikat','<>','SB')->where('semester','=','2/Genap')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->count();
 
     			if ($countsosial != 0) {
 
     				$status = 1;
 
-                        $predikat = DB::table('nilai')->select('predikat','semester')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->first();
+                        $predikat = DB::table('nilai')->select('predikat','semester')->where('id_siswa','=',$siswas->id)->where('id_kelas','=',session()->get('kelas'))->where('kd_aspek','=',4)->where('id_pelajaran','=',$pkn->id)->where('semester','=','2/Genap')->where('predikat','<>','B')->where('predikat','<>','SB')->where('tahunajaran','=',session()->get('tahunajaran'))->whereNotNull('id_karyawan')->first();
 
                         $query.= " | Aspek Sosial = ".$predikat->predikat." (".$predikat->semester.") ";
                     
@@ -194,6 +200,8 @@ class AnalisisKenaikanController extends Controller
     			}
 
     			foreach ($daftarpelajaran as $daftar) {
+                    $memoriPelajaran = false;
+
     				$ckm = DB::table('datadasarnilai')->select('ckmpengetahuan','ckmketerampilan')->where('jurusan','=',session()->get('jurusankelas'))->where('gol_kelas','=',session()->get('golongankelas'))->where('id_pelajaran','=',$daftar->id_pelajaran)->first();
 
     				$pengetahuan = DB::table('nilai')->where('id_kelas','=',session()->get('kelas'))->where('id_siswa','=',$siswas->id)->where('kd_aspek','=',1)->where('id_pelajaran','=',$daftar->id_pelajaran)->where('tahunajaran','=',session()->get('tahunajaran'))->sum('nilai');
@@ -201,6 +209,7 @@ class AnalisisKenaikanController extends Controller
                     $sumpengetahuan = $pengetahuan / 2;
 
     				if ($sumpengetahuan < $ckm->ckmpengetahuan) {
+                        $memoriPelajaran = true;
     					$incre++;
     					if (!$sumpengetahuan) {
     						if ($status == 1) {
@@ -229,7 +238,9 @@ class AnalisisKenaikanController extends Controller
                     $sumketerampilan = $keterampilan / 2;
 
     				if ($sumketerampilan < $ckm->ckmketerampilan) {
-    					$incre++;
+    					if ($memoriPelajaran == false) {
+                            $incre++;
+                        }
     					if (!$sumketerampilan) {
     						if ($status == 1) {
     							$querys .=" | ".$daftar->datapelajaran->namapelajaran."(KETERAMPILAN) = 0 (".$ckm->ckmketerampilan.")";

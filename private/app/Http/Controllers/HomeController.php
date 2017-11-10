@@ -328,6 +328,13 @@ class HomeController extends Controller
 
     }
 
+    public function setguru(){
+        session()->set('id_guru',Input::get('daftarguru'));
+        session()->set('kelas',Input::get('menukelas'));
+        session()->set('pelajaran',Input::get('menupelajaran'));
+        return Redirect::to('admin/guru/home');
+    }
+
     public function findproperguru(Request $request){
         session()->flash('id_pelajaran',$request->daftarpelajaran);
         session()->flash('id_kelas',$request->daftarkelas);

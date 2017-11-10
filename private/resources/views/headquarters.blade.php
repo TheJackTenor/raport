@@ -417,6 +417,7 @@ desired effect
                 <h4 class="modal-title">Pilih Kelas dan Pelajaran</h4>
               </div>
               <div class="modal-body">
+              {{Form::open(array('role'=>'form','url'=>'admin/setguru','enctype'=>'multipart/form-data'))}}
                   <div class="form-group">                  
                     {{Form::label('pilihkelas','Pilih Kelas',['class'=>'control-label'])}}                   
                      <select name="menukelas" id="menukelas" class="form-control select2" style="width: 100%" onchange="pilihKelasDanPelajaran();">
@@ -441,7 +442,7 @@ desired effect
 
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default pull-left btn-flat" data-toggle="modal" data-target="#loginsebagai" data-dismiss="modal">Kembali</button>
-                  <button type="button" class="btn btn-success btn-flat" onclick="findguru();" data-dismiss="modal">Eksekusi</button> 
+                  <button type="button" class="btn btn-success btn-flat" onclick="findguru();" data-dismiss="modal" id="pilihKelasDanPelajaranEksekusi">Eksekusi</button> 
                 </div>
 
 
@@ -1299,7 +1300,7 @@ $(".js-example-placeholder-single").select2({
 <script type="text/javascript">
   function pilihKelasDanPelajaran(){
     $('select[id="menupelajaran"]').attr("disabled", true);
-
+    document.getElementById("pilihKelasDanPelajaranEksekusi").disabled=true;
      $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1318,6 +1319,7 @@ $(".js-example-placeholder-single").select2({
             success: function(data){
               var options, index, select, option;
         $('select[id="menupelajaran"]').attr("disabled", false);
+        document.getElementById("pilihKelasDanPelajaranEksekusi").disabled=false;
         // Get the raw DOM object for the select box
         select = document.getElementById('menupelajaran');
 
